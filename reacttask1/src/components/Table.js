@@ -8,6 +8,7 @@ import Button from '@mui/material/Button';
 
 function Table() {
     const [Data, setData] = useState([]);
+    const [Click, setClick] = useState(1);
     //axios not working i dont know why
     // setData(axios.get('https://jsonplaceholder.typicode.com/todos').then(res =>{res.json()}));
     //tried fetch api instead
@@ -26,6 +27,9 @@ function Table() {
       }
       function editHandler(){
 
+    }
+      function openHandler(){
+        this.Click?setClick(0):setClick(1);
     }
 
   return (
@@ -62,8 +66,10 @@ function Table() {
                                 <td>{data.userId}</td>
                                 <td>{data.title}</td>
                                 <td>{data.body}</td>
-                                <button onClick={() => editHandler }>...</button>
-                            </tr>
+                                <button onClick={() => openHandler() }>...</button>
+                                <button onClick={() => editHandler() } disabled= {Click?true:false}>edit</button>
+                                <button onClick={() => editHandler() } disabled= {Click?true:false}>delete</button>
+                                </tr>
                         )
                     })
                 }
